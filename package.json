@@ -1,13 +1,14 @@
 {
   "name": "commit-ticket",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Git hook intended for automatically placing ticket id from branch name to commit message",
   "main": "bin/index.js",
   "license": "MIT",
   "bin": "bin/index.js",
   "scripts": {
     "lint": "eslint -c .eslintrc.json . --ext=ts --fix",
-    "build": "tsc"
+    "build": "tsc",
+    "postinstall": "yarn && yarn build"
   },
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
