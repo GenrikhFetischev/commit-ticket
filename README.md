@@ -9,9 +9,9 @@ messages like `PROJECT-123 made cool things`. It is what this package exactly do
 
 ## Install
 
- Run ```bash
-          yarn add commit-ticket -D
-       ```
+  ```bash
+   $ yarn add commit-ticket -D
+   ```
        
 ## Usage 
        
