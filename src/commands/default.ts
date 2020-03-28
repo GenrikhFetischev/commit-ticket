@@ -15,7 +15,7 @@ const command: CommandModule<{}, Options> = {
     return yargs
       .positional('commitParams', {
         describe: 'params for commit message',
-        type: 'string',
+        type: 'string'
       })
       .demandOption('commitParams');
   },
@@ -44,7 +44,7 @@ const command: CommandModule<{}, Options> = {
     };
 
     messageFormatter(success, fail)(path);
-  },
+  }
 };
 
 export default command;
