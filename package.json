@@ -1,12 +1,13 @@
 {
   "name": "commit-ticket",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Git hook intended for automatically placing ticket id from branch name to commit message",
-  "main": "bin/index.js",
+  "author": "Genrikh Fetischev <genrikhfetischev@gmail.com>",
   "license": "MIT",
   "bin": "bin/index.js",
   "repository": "https://github.com/GenrikhFetischev/commit-ticket",
-  "files": ["**/*"],
+  "main": "bin/index.js",
+  "files": ["build"],
   "scripts": {
     "lint": "eslint -c .eslintrc.json . --ext=ts --fix",
     "build": "tsc",
