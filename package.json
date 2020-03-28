@@ -6,7 +6,8 @@
   "license": "MIT",
   "bin": "bin/index.js",
   "scripts": {
-    "lint": "eslint -c .eslintrc.json . --ext=ts --fix"
+    "lint": "eslint -c .eslintrc.json . --ext=ts --fix",
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
