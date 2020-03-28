@@ -1,6 +1,6 @@
 {
   "name": "commit-ticket",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "Git hook intended for automatically placing ticket id from branch name to commit message",
   "author": "Genrikh Fetischev <genrikhfetischev@gmail.com>",
   "license": "MIT",
