@@ -1,0 +1,22 @@
+{
+  "name": "commit-ticket",
+  "version": "1.0.0",
+  "description": "Git hook intended for automatically placing ticket id from branch name to commit message",
+  "main": "bin/index.js",
+  "license": "MIT",
+  "bin": "bin/index.js",
+  "devDependencies": {
+    "@types/app-root-path": "^1.2.4",
+    "@types/current-git-branch": "^1.1.0",
+    "@types/node": "^13.9.5",
+    "@types/yargs": "^15.0.4",
+    "prettier": "^2.0.2",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "chalk": "^3.0.0",
+    "current-git-branch": "^1.1.0",
+    "yargs": "^15.3.1"
+  }
+}
