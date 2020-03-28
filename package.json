@@ -5,13 +5,26 @@
   "main": "bin/index.js",
   "license": "MIT",
   "bin": "bin/index.js",
+  "scripts": {
+    "lint": "eslint -c .eslintrc.json . --ext=ts --fix"
+  },
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
     "@types/current-git-branch": "^1.1.0",
     "@types/node": "^13.9.5",
     "@types/yargs": "^15.0.4",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "add": "^2.0.6",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "prettier": "^2.0.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "yarn": "^1.22.4"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",

@@ -1,8 +1,8 @@
-import getBranchName from "current-git-branch";
-import { readFileSync, writeFileSync } from "fs";
-import { resolve } from "path";
+import getBranchName from 'current-git-branch';
+import { readFileSync, writeFileSync } from 'fs';
+import { resolve } from 'path';
 
-import { configReader } from "./config-reader";
+import { configReader } from './config-reader';
 
 type MessageFormatterTool = (pathToCommitMessage: string) => void;
 
@@ -13,7 +13,7 @@ type MessageFormatter = (
 
 const getCommitMessage = (pathToCommitMessage: string): string => {
   const messagePath: string = resolve(pathToCommitMessage);
-  return readFileSync(messagePath, "utf-8");
+  return readFileSync(messagePath, 'utf-8');
 };
 
 const processCommitMessage = (
@@ -21,9 +21,7 @@ const processCommitMessage = (
   success: () => never,
   fail: (e: Error) => never
 ): void => {
-  const {
-    branchPattern: branchPatternString,
-  } = configReader(fail);
+  const { branchPattern: branchPatternString } = configReader(fail);
   const message = getCommitMessage(pathToCommitMessage);
   const branchName = getBranchName();
 
@@ -31,26 +29,18 @@ const processCommitMessage = (
 
   const branch = String(branchName).match(branchPattern);
 
-  console.log('!!!!!!!!!!!');
-
-  console.log(branchName);
-  console.log(branchPattern);
-  console.log(branch);
-
   if (branch === null) {
     success();
   }
 
   const [, ticket] = branch;
 
-  console.log(ticket);
-
   if (message.includes(ticket)) {
     success();
   }
 
-  const commitMessage = `[${ticket}] ${message.replace(/\n$/g, "")}`;
-  writeFileSync(pathToCommitMessage, commitMessage, "utf-8");
+  const commitMessage = `[${ticket}] ${message.replace(/\n$/g, '')}`;
+  writeFileSync(pathToCommitMessage, commitMessage, 'utf-8');
   success();
 };
 

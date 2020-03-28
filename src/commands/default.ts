@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+/* eslint-disable-next-line no-unused-vars */
 import { CommandModule } from 'yargs';
 
 import messageFormatter from '../tools/message-formatter';
@@ -14,7 +15,7 @@ const command: CommandModule<{}, Options> = {
     return yargs
       .positional('commitParams', {
         describe: 'params for commit message',
-        type: 'string'
+        type: 'string',
       })
       .demandOption('commitParams');
   },
@@ -43,7 +44,7 @@ const command: CommandModule<{}, Options> = {
     };
 
     messageFormatter(success, fail)(path);
-  }
+  },
 };
 
 export default command;
