@@ -40,10 +40,12 @@ messages like `PROJECT-123 made cool things`. It is what this package exactly do
           "branchPattern": "^feature/(\\w+-[0-9]{1,6})"
         }     
     ```
-3.  Adjust hook, for instance with [Husky](https://github.com/typicode/husky):
+3.  Adjust hook, for instance with [Husky](https://github.com/typicode/husky). 
+    It is required to use that hook at `commit-msg` stage because only there we have a path 
+    to entered commit message:
     ```yaml
       hooks:
-        prepare-commit-msg: commit-ticket $HUSKY_GIT_PARAMS
+        commit-msg: commit-ticket $HUSKY_GIT_PARAMS
     ```
 
 
