@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ESNext",
     "module": "commonjs",
-    "sourceMap": true,
     "outDir": "build",
     "rootDir": "src",
     "moduleResolution": "node",
@@ -11,11 +10,7 @@
     "allowJs": false,
     "noImplicitAny": true
   },
-  "include": ["src/"],
+  "include": ["src"],
   "exclude": ["node_modules"],
-  "lib": ["ES6", "node"],
-  "rules": {
-    "quotemark": [true, "single"],
-    "semicolon": [true]
-  }
+  "lib": ["ES6", "node"]
 }

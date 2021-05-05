@@ -1,57 +1,28 @@
 import getBranchName from 'current-git-branch';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
+import appRoot from 'app-root-path';
+import chalk from 'chalk';
 
-import { configReader } from './config-reader';
-
-type MessageFormatterTool = (pathToCommitMessage: string) => void;
-
-type MessageFormatter = (
-  success: () => never,
-  fail: (e: Error) => never
-) => MessageFormatterTool;
+export const readConfigFunction = () => {
+  return require(resolve(appRoot.path, 'commit-ticket-config.js'));
+};
 
 const getCommitMessage = (pathToCommitMessage: string): string => {
   const messagePath: string = resolve(pathToCommitMessage);
   return readFileSync(messagePath, 'utf-8');
 };
 
-const processCommitMessage = (
-  pathToCommitMessage: string,
-  success: () => never,
-  fail: (e: Error) => never
-): void => {
-  const { branchPattern: branchPatternString } = configReader(fail);
-  const message = getCommitMessage(pathToCommitMessage);
-  const branchName = getBranchName();
-
-  const branchPattern = new RegExp(branchPatternString);
-
-  const branch = String(branchName).match(branchPattern);
-
-  if (branch === null) {
-    success();
-  }
-
-  const [, ticket] = branch;
-
-  if (message.includes(ticket)) {
-    success();
-  }
-
-  const commitMessage = `[${ticket}] ${message.replace(/\n$/g, '')}`;
-  writeFileSync(pathToCommitMessage, commitMessage, 'utf-8');
-  success();
-};
-
-const messageFormatter: MessageFormatter = (success, fail) => (
-  pathToCommitMessage
-) => {
+export const prepareCommitMessage = (pathToCommitMessage: string) => {
   try {
-    processCommitMessage(pathToCommitMessage, success, fail);
+    const message = getCommitMessage(pathToCommitMessage);
+    const branchName = getBranchName();
+    const configFunction = readConfigFunction();
+
+    const commitMessage = configFunction(branchName, message);
+    writeFileSync(pathToCommitMessage, commitMessage, 'utf-8');
+    console.log(chalk.green(`✅ Prepared commit message: ${commitMessage}`));
   } catch (e) {
-    fail(e);
+    console.error(chalk.red('🚫️ prepare-commit-msg hook error️'), e);
   }
 };
-
-export default messageFormatter;

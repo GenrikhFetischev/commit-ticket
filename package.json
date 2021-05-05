@@ -16,7 +16,7 @@
     "build"
   ],
   "scripts": {
-    "lint": "eslint -c .eslintrc.json . --ext=ts --fix",
+    "lint": "yarn tsc --noEmit",
     "build": "tsc",
     "prepublish": "yarn lint && yarn build"
   },
@@ -27,16 +27,9 @@
     "@types/yargs": "^15.0.4",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
     "husky": "^4.2.3",
-    "prettier": "^2.0.2",
-    "typescript": "^3.8.3",
-    "yarn": "^1.22.4"
+    "prettier": "^2.2.1",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
