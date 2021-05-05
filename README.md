@@ -13,39 +13,20 @@ messages like `PROJECT-123 made cool things`. It is what this package exactly do
    $ yarn add commit-ticket -D
    ```
        
-## Usage 
+## Usage
        
-1. Create `commit-ticket-config.json` file in the root of your project
-2. Config should contain only one parameter `branchPattern` which is a regexp.
-    ```json
-            {
-              "branchPattern": "^feature/(\\w+-[0-9]{1,6})"
-            }     
-    ```
+1. Create `commit-ticket-config.js` file in the root of your project by
+   ```bash
+   $ yarn commit-ticket generate-config
+   ```   
+   Once command above called you'll see `commit-ticket-config.js` in the root of your project. If you looked into that file you will see that config should 
+   export default one function that gives two parameters: git branch name and commit message. Function must return string and returned string will be used as commit message
     
-    Regexp MUST satisfy two conditions:
-    * Whole regexp should match required part of branch name. For example, you could have branch `feature/PROJECT-123-cool-things`
-    where `feature/PROJECT-123` is required part. Only `feature/PROJECT-123` should be matched by regexp.
-    * Ticket id should be only parentheses group.
-    
-    You can test your regexp:
-    
-    ```javascript
-       "feature/PROJECT-123-cool-things".match(new RegExp(branchPattern)) // should return
-       //  ["feature/PROJECT-123", "PROJECT-123", index: 0, input: "feature/PROJECT-123-cool-things", groups: undefined]
-    ```
-         
-    ```json
-        {
-          "branchPattern": "^feature/(\\w+-[0-9]{1,6})"
-        }     
-    ```
-3.  Adjust hook, for instance with [Husky](https://github.com/typicode/husky). 
-    It is required to use that hook at `commit-msg` stage because only there we have a path 
-    to entered commit message:
+2.  Adjust hook with [Husky](https://github.com/typicode/husky).
+    It is required to use that hook at `commit-msg` stage because only there we have a path to entered commit message:
     ```yaml
       hooks:
-        commit-msg: commit-ticket $HUSKY_GIT_PARAMS
+        commit-msg: commit-ticket prepare-msg $HUSKY_GIT_PARAMS
     ```
 
 
